@@ -1,0 +1,460 @@
+﻿body {
+    background-color: #f4d9e3 !important;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* لتوسيط النص أيضًا */
+}
+
+    .nav-link i {
+        font-size: 1.5rem; /* تعديل حجم الأيقونة */
+        margin-bottom: 5px; /* مسافة بين الأيقونة والنص */
+    }
+
+.nav-item {
+    margin: 0 10px; /* مسافة بين العناصر داخل شريط التنقل */
+}
+
+.navbar-nav .nav-item {
+    margin-right: 10px;
+}
+
+    .navbar-nav .nav-item:not(:last-child) {
+        margin-right: 15px;
+    }
+
+    .navbar-nav .nav-item:nth-child(n+3) {
+        margin-left: 10px;
+    }
+
+.navbar {
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: #ff4081;
+    }
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f1b8ba, #fd9abb );
+    color: white;
+}
+
+    .hero h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+.btn-light {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+    .btn-light:hover {
+        background-color: #ff4081;
+        color: white;
+    }
+
+.section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 30px 0;
+    font-weight: bold;
+    color: #000000;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+.btn-transparent {
+    background-color: transparent;
+    color: #F5A3B7; /* اللون الافتراضي للنص */
+    border: 2px solid #F5A3B7; /* اللون الافتراضي للحدود */
+    transition: all 0.3s ease; /* تأثير الانتقال */
+}
+
+    .btn-transparent:hover {
+        background-color: #F5A3B7; /* تغيير اللون عند التمرير */
+        color: #F5A3B7; /* تغيير لون النص عند التمرير */
+    }
+
+.card-img {
+    border-radius: 15px 0 0 15px;
+}
+
+.btn-pink {
+    background-color: #ffbaca; /* اللون الوردي */
+    border-color: #ffbaca; /* تأكيد اللون للحدود */
+}
+
+    .btn-pink:hover {
+        background-color: #ffbaca; /* درجة أغمق عند المرور بالفأرة */
+        border-color: #ffbaca; /* تأكيد للحدود عند المرور */
+    }
+
+.icon a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black; /* لون النص */
+    margin: 0 10px; /* مسافة بين الأيقونات */
+}
+
+.icon i {
+    font-size: 1.5rem; /* تكبير الأيقونة */
+    margin-bottom: 5px; /* مسافة بين الأيقونة والنص */
+}
+
+.nav-text {
+    font-size: 0.9rem;
+}
+
+/* إضافة مسافة بين Chat Bot وباقي الأيقونات */
+.chat-bot-icon {
+    margin-left: 30px; /* يمكنك تغييرها حسب الحاجة */
+}
+
+.eva-text {
+    color: #F5A3B7 !important;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.hashtag {
+    color: #FF1493;
+}
+
+.card {
+    border: none;
+}
+
+.card-img-top {
+    border-radius: 10%;
+}
+
+button:hover {
+    background-color: #FF1493; /* لون أغمق عند المرور */
+    cursor: pointer; /* تغيير المؤشر */
+}
+body {
+    background-color: #f9cfdf !important;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* لتوسيط النص أيضًا */
+}
+
+    .nav-link i {
+        font-size: 1.5rem; /* تعديل حجم الأيقونة */
+        margin-bottom: 5px; /* مسافة بين الأيقونة والنص */
+    }
+
+.nav-item {
+    margin: 0 10px; /* مسافة بين العناصر داخل شريط التنقل */
+}
+
+.navbar-nav .nav-item {
+    margin-right: 10px;
+}
+
+    .navbar-nav .nav-item:not(:last-child) {
+        margin-right: 15px;
+    }
+
+    .navbar-nav .nav-item:nth-child(n+3) {
+        margin-left: 10px;
+    }
+
+.navbar {
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: #ff4081;
+    }
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f1b8ba, #fd9abb );
+    color: white;
+}
+
+    .hero h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+.btn-light {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+    .btn-light:hover {
+        background-color: #ff4081;
+        color: white;
+    }
+
+.section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 30px 0;
+    font-weight: bold;
+    color: #000000;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+.btn-transparent {
+    background-color: transparent;
+    color: #F5A3B7; /* اللون الافتراضي للنص */
+    border: 2px solid #F5A3B7; /* اللون الافتراضي للحدود */
+    transition: all 0.3s ease; /* تأثير الانتقال */
+}
+
+    .btn-transparent:hover {
+        background-color: #F5A3B7; /* تغيير اللون عند التمرير */
+        color: #F5A3B7; /* تغيير لون النص عند التمرير */
+    }
+
+.card-img {
+    border-radius: 15px 0 0 15px;
+}
+
+.btn-pink {
+    background-color: #ffbaca; /* اللون الوردي */
+    border-color: #ffbaca; /* تأكيد اللون للحدود */
+}
+
+    .btn-pink:hover {
+        background-color: #ffbaca; /* درجة أغمق عند المرور بالفأرة */
+        border-color: #ffbaca; /* تأكيد للحدود عند المرور */
+    }
+
+.icon a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black; /* لون النص */
+    margin: 0 10px; /* مسافة بين الأيقونات */
+}
+
+.icon i {
+    font-size: 1.5rem; /* تكبير الأيقونة */
+    margin-bottom: 5px; /* مسافة بين الأيقونة والنص */
+}
+
+.nav-text {
+    font-size: 0.9rem;
+}
+
+/* إضافة مسافة بين Chat Bot وباقي الأيقونات */
+.chat-bot-icon {
+    margin-left: 30px; /* يمكنك تغييرها حسب الحاجة */
+}
+
+.eva-text {
+    color: #F5A3B7 !important;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.hashtag {
+    color: #FF1493;
+}
+
+.card {
+    border: none;
+}
+
+.card-img-top {
+    border-radius: 10%;
+}
+
+button:hover {
+    background-color: #FF1493; /* لون أغمق عند المرور */
+    cursor: pointer; /* تغيير المؤشر */
+}
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('images/banner.jpg');
+    background-size: cover; /* يغطي كل المساحة */
+    background-repeat: no-repeat; /* ما تتكررش */
+    background-position: center; /* في النص */
+    padding: 30px 30px;
+    height: 55vh;
+    box-sizing: border-box;
+}
+
+
+.banner-text {
+    max-width: 50%;
+}
+
+    .banner-text h1 {
+        font-size: 36px;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 20px;
+        margin-left: 130px;
+    }
+
+    .banner-text p {
+        font-size: 18px;
+        color: #444;
+        margin-bottom: 30px;
+        margin-left: 130px;
+    }
+
+    .banner-text button {
+        background: linear-gradient(to right, #f08da6, #f8a8b8);
+        color: white;
+        padding: 8px 90px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: background 0.3s ease;
+        margin-left: 130px;
+    }
+
+        .banner-text button:hover {
+            background: linear-gradient(to right, #f47b99, #f595a8);
+        }
+
+.banner-image img {
+    max-width: 200px;
+    height: auto;
+}
+
+
+.banner-text, .banner-image {
+    max-width: 100%;
+}
+
+    .banner-image img {
+        margin-top: 10px;
+    }
+
+.eva-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    color: #F5A3B7 !important;
+    letter-spacing: 1px;
+}
+
+    .eva-brand .cosmetics {
+        color: #555;
+        margin-left: 5px;
+        text-transform: capitalize;
+    }
+.icon a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+    .icon a:hover {
+        color: #ff4081;
+    }
+
+.icon i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.nav-text {
+    font-size: 0.9rem;
+}
+.middle-links {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+    .middle-links ul {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .middle-links .nav-link {
+        color: #333;
+        font-weight: 500;
+        font-size: 16px;
+        transition: color 0.3s;
+    }
+
+        .middle-links .nav-link:hover {
+            color: #F5A3B7;
+        }

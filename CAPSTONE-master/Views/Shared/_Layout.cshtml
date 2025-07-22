@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <nav id="main_nav" class="navbar navbar-expand-lg navbar-light">
+            <div class="container d-flex justify-content-between align-items-center">
+       
+                <a class="navbar-brand h1 eva-brand" asp-controller="Home" asp-action="Index">
+                    Eva <span class="cosmetics">Cosmetics</span>
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="middle-links">
+                    <ul class="navbar-nav d-flex flex-row gap-3 mb-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="BestSeller">Best Sellers</a>
+                        </li>
+                  
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Aboutus/index">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Blog/index">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+
+                    <!-- أيقونات الحساب، السلة، والبحث -->
+                    <div class="icon align-self-center d-flex">
+                        <a class="nav-link text-center" href="#">
+                            <i class='bx bx-search'></i>
+
+                        </a>
+                            <a class="nav-link text-center" href="/Account/index">
+                            <i class='bx bx-user-circle'></i>
+                            
+</a>
+                        <a class="nav-link text-center" href="#">
+                            <i class='bx bx-shopping-bag'></i>
+                          
+                        </a>
+                        <!-- أيقونة Chat Bot -->
+                        <a class="nav-link text-center" href="/Home/Chat">
+                            <i class='bx bx-message-dots'></i>
+                            <div class="nav-text"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer style="background-color: #222; color: #fff; padding: 60px 0; font-family: Arial, sans-serif;   margin-top: 60px;">
+        <div style="width: 85%; margin: auto; display: flex; justify-content: space-between; flex-wrap: wrap; align-items: flex-start; gap: 40px;">
+            <div style="flex: 1; min-width: 280px;">
+                <h3 style="color: #ff69b4; margin-bottom: 15px; font-size: 20px;">Eva cosmetics</h3>
+                <p style="line-height: 1.8; font-size: 14px;">Discover beauty products with our natural organic beauty line.</p>
+                <p style="line-height: 2; font-size: 14px;">
+                    📞 +380 123 45 67<br>
+                    ✉ bloom@xyz.com<br>
+                    🌍 Kyiv, Ukraine
+                </p>
+            </div>
+            <div style="flex: 1; min-width: 160px;">
+                <h4 style="margin-bottom: 15px; font-size: 16px;">HELP</h4>
+                <ul style="list-style: none; padding: 0; line-height: 2; font-size: 14px;">
+                    <li><a href="#" style="color: #fff; text-decoration: none;">Contact us</a></li>
+                    <li><a href="#" style="color: #fff; text-decoration: none;">FAQ</a></li>
+                    <li><a href="#" style="color: #fff; text-decoration: none;">Shipping & Returns</a></li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 160px;">
+                <h4 style="margin-bottom: 15px; font-size: 16px;">MY ACCOUNT</h4>
+                <ul style="list-style: none; padding: 0; line-height: 2; font-size: 14px;">
+                    <li><a href="#" style="color: #fff; text-decoration: none;">Addresses</a></li>
+                    <li><a href="#" style="color: #fff; text-decoration: none;">Order Status</a></li>
+                    <li><a href="#" style="color: #fff; text-decoration: none;">Wishlist</a></li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 160px;">
+                <h4 style="margin-bottom: 15px; font-size: 16px;">CUSTOMER CARE</h4>
+                <ul style="list-style: none; padding: 0; line-height: 2; font-size: 14px;">
+                    <li><a href="#" style="color: #fff; text-decoration: none;">About us</a></li>
+                    <li><a href="#" style="color: #fff; text-decoration: none;">Blog</a></li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 280px; text-align: center;">
+                <h4 style="margin-bottom: 15px; font-size: 16px;">SIGN UP FOR EMAILS</h4>
+                <p style="font-size: 14px;">Stay informed. Subscribe to our newsletter.</p>
+                <input type="email" placeholder="Email" style="padding: 10px; width: 85%; border: none; border-radius: 5px; font-size: 14px;">
+                <button style="padding: 10px; background-color: #ff69b4; color: #fff; border: none; cursor: pointer; margin-top: 10px; border-radius: 5px; font-size: 14px;">Subscribe</button>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px; border-top: 1px solid #444; padding-top: 20px;">
+            <p style="font-size: 14px;">&copy; 2023 Bloom Beauty</p>
+            <a href="#" style="color: #fff; text-decoration: none; margin: 0 15px; font-size: 14px;">Privacy Policy</a> |
+            <a href="#" style="color: #fff; text-decoration: none; margin: 0 15px; font-size: 14px;">Terms And Conditions</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

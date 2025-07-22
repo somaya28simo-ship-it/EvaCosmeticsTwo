@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Best Sellers";
+}
+
+<style>
+    body {
+        background-color: #f8d7e5;
+    }
+
+    .card {
+        margin-bottom: 30px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 15px;
+        background-color: #fff;
+    }
+
+        .card img {
+            border-radius: 8px;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #fdfdfd;
+        }
+
+    .card-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        color: #6c757d;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    .btn-pink {
+        background-color: #ff69b4;
+        color: white;
+        padding: 10px 40px; /* كبرنا الزر */
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-pink:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+
+    .row {
+        margin-bottom: 30px;
+    }
+</style>
+
+
+<div class="container mt-5">
+    <h3 class="mb-4 text-center">Best Sellers</h3>
+    <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/Images/1vGUmrX0IE2HZrVKmWmJhpZJDpxevTkzYnPIwGv9.webp" class="card-img-top" alt="Product 1">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">Short description for product 1.</p>
+                    <a href="#" class="btn btn-pink">Buy</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/Images/2VWZJrgO23bUarV1hn7aQs7lzWfuhslPtCrkcCwB.webp" class="card-img-top" alt="Product 2">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Product 2</h5>
+                    <p class="card-text">Short description for product 2.</p>
+                    <a href="#" class="btn btn-pink">Buy</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/Images/f5rxSDBgEsZNs9sG30dJSyMfNv17fNnoZWMBK3Gv.webp" class="card-img-top" alt="Product 3">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Product 3</h5>
+                    <p class="card-text">Short description for product 3.</p>
+                    <a href="#" class="btn btn-pink">Buy</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/Images/OIP.webp" class="card-img-top" alt="Product 4">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Product 4</h5>
+                    <p class="card-text">Short description for product 4.</p>
+                    <a href="#" class="btn btn-pink">Buy</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/Images/doYoP3DmbF8aGQ92YKxnEKbaiwzD2RxxssPLGk9A.webp" class="card-img-top" alt="Product 5">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Product 5</h5>
+                    <p class="card-text">Short description for product 5.</p>
+                    <a href="#" class="btn btn-pink">Buy</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/Images/HI8Vt2rjK4004PElpSJdvx4yTDmDdJHMx7e10LqB.webp" class="card-img-top" alt="Product 6">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Product 6</h5>
+                    <p class="card-text">Short description for product 6.</p>
+                    <a href="#" class="btn btn-pink">Buy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

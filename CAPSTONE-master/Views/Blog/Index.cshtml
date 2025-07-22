@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./stely.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./bott.js" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <title>Document</title>
+    <style>
+        .categories-bar {
+            background: #f3a7b3;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .category {
+            background: white;
+            color: #383838;
+            border-radius: 20px;
+            padding: 5px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+            .category.active {
+                background: #f09ab0;
+                color: white;
+            }
+
+        .post-container {
+            background-color: #f9cfdf !important;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .post-container img {
+                width: 50%;
+                border-radius: 10px;
+            }
+
+            .post-container .content {
+                width: 50%;
+                padding: 0 20px;
+            }
+
+            .post-container h2 {
+                color: #b35a74;
+                font-size: 1.5rem;
+                margin-top: 10px;
+            }
+
+            .post-container p {
+                color: #555;
+            }
+
+        .read-more {
+            background-color: #F5A3B7;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .read-more:hover {
+                background-color: #F5A3B7;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="categories-bar">
+        <button class="category active">All Category</button>
+        <button class="category">Ecofriendly</button>
+        <button class="category">Organic</button>
+        <button class="category">Tips</button>
+        <button class="category">Compilation</button>
+        <button class="category">Ingredients</button>
+        <button class="category">Antiaging</button>
+        <button class="category">Combination</button>
+    </div>
+
+    <main class="container mt-4">
+        <div class="post-container">
+			<img src="~/Images/pexels-photo-9748713.webp" />
+            <div class="content">
+                <h2>Cracking the Coconut Code</h2>
+                <p>Few ingredients have been debated as much in recent years as coconut oil. Is it a trick or a treasure?</p>
+                <button class="read-more">Read More</button>
+            </div>
+        </div>
+        <div class="post-container flex-row-reverse">
+			<img src="~/images/pexels-photo-6724448.jpeg" />
+            <div class="content">
+                <h2>Bloom Beauty Best of 2023</h2>
+                <p>Can you believe we're here? Another year is wrapping up and we're feeling celebratory...</p>
+                <button class="read-more">Read More</button>
+            </div>
+        </div>
+        <div class="post-container">
+			<img src="~/images/neauthy-skincare-8jg7vumdulu-unsplash.jpg" />
+            <div class="content">
+                <h2>Cracking the Coconut Code</h2>
+                <p>Few ingredients have been debated as much in recent years as coconut oil. Is it a trick or a treasure?</p>
+                <button class="read-more">Read More</button>
+            </div>
+        </div>
+        <div class="post-container flex-row-reverse">
+			<img src="~/images/vya-naturals-m3l24oeny2c-unsplash.jpg" />
+            <div class="content">
+                <h2>Bloom Beauty Best of 2023</h2>
+                <p>Can you believe we're here? Another year is wrapping up and we're feeling celebratory...</p>
+                <button class="read-more">Read More</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

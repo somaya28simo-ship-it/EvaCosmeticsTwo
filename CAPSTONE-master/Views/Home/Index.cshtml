@@ -1,0 +1,482 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Home Page";
+    var newArrivals = ViewData["NewArrivals"] as List<WebApplication1.Models.Product>;
+    var bestSellers = ViewData["BestSellers"] as List<WebApplication1.Models.Product>;
+}
+
+<style>
+    body {
+        background-color: #f9cfdf !important;
+    }
+
+    .nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center; /* لتوسيط النص أيضًا */
+    }
+
+        .nav-link i {
+            font-size: 1.5rem; /* تعديل حجم الأيقونة */
+            margin-bottom: 5px; /* مسافة بين الأيقونة والنص */
+        }
+
+    .nav-item {
+        margin: 0 10px; /* مسافة بين العناصر داخل شريط التنقل */
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 10px;
+    }
+
+        .navbar-nav .nav-item:not(:last-child) {
+            margin-right: 15px;
+        }
+
+        .navbar-nav .nav-item:nth-child(n+3) {
+            margin-left: 10px;
+        }
+
+    .navbar {
+        background-color: white;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-link {
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+        .nav-link:hover {
+            color: #ff4081;
+        }
+
+    .hero {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #f1b8ba, #fd9abb );
+        color: white;
+    }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+    .btn-light {
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px 20px;
+        transition: 0.3s;
+    }
+
+        .btn-light:hover {
+            background-color: #ff4081;
+            color: white;
+        }
+
+    .section-title {
+        text-align: center;
+        font-size: 1.8rem;
+        margin: 30px 0;
+        font-weight: bold;
+        color: #000000;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    .btn-transparent {
+        background-color: transparent;
+        color: #F5A3B7; /* اللون الافتراضي للنص */
+        border: 2px solid #F5A3B7; /* اللون الافتراضي للحدود */
+        transition: all 0.3s ease; /* تأثير الانتقال */
+    }
+
+        .btn-transparent:hover {
+            background-color: #F5A3B7; /* تغيير اللون عند التمرير */
+            color: #F5A3B7; /* تغيير لون النص عند التمرير */
+        }
+
+    .card-img {
+        border-radius: 15px 0 0 15px;
+    }
+
+    .btn-pink {
+        background-color: #ffbaca; /* اللون الوردي */
+        border-color: #ffbaca; /* تأكيد اللون للحدود */
+    }
+
+        .btn-pink:hover {
+            background-color: #ffbaca; /* درجة أغمق عند المرور بالفأرة */
+            border-color: #ffbaca; /* تأكيد للحدود عند المرور */
+        }
+
+    .icon a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: black; /* لون النص */
+        margin: 0 10px; /* مسافة بين الأيقونات */
+    }
+
+    .icon i {
+        font-size: 1.5rem; /* تكبير الأيقونة */
+        margin-bottom: 5px; /* مسافة بين الأيقونة والنص */
+    }
+
+    .nav-text {
+        font-size: 0.9rem;
+    }
+
+    /* إضافة مسافة بين Chat Bot وباقي الأيقونات */
+    .chat-bot-icon {
+        margin-left: 30px; /* يمكنك تغييرها حسب الحاجة */
+    }
+
+    .eva-text {
+        color: #F5A3B7 !important;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: #333;
+    }
+
+    .hashtag {
+        color: #FF1493;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 25px;
+        padding: 0 40px 60px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .product-card {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 15px;
+        transition: 0.3s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+    .product-name {
+        font-size: 1.1rem;
+        color: #333;
+        margin: 15px 0 5px;
+    }
+
+    .product-price {
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .btn-pink {
+        background-color: #ff69b4;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .btn-pink:hover {
+            background-color: #ff85c1;
+        }
+
+    .card-img-top {
+        border-radius: 10%;
+    }
+
+    button:hover {
+        background-color: #FF1493; /* لون أغمق عند المرور */
+        cursor: pointer; /* تغيير المؤشر */
+    }
+
+    .banner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-image: url('images/banner.jpg');
+        background-size: cover; /* يغطي كل المساحة */
+        background-repeat: no-repeat; /* ما تتكررش */
+        background-position: center; /* في النص */
+        height: 55vh;
+        box-sizing: border-box;
+    }
+
+
+    .banner-text {
+        max-width: 50%;
+    }
+
+        .banner-text h1 {
+            font-size: 36px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-left: 130px;
+        }
+
+        .banner-text p {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 30px;
+            margin-left: 130px;
+        }
+
+        .banner-text button {
+            background: linear-gradient(to right, #f08da6, #f8a8b8);
+            color: white;
+            padding: 8px 90px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease;
+            margin-left: 130px;
+        }
+
+            .banner-text button:hover {
+                background: linear-gradient(to right, #f47b99, #f595a8);
+            }
+
+    .banner-image img {
+        max-width: 200px;
+        height: auto;
+    }
+
+
+    .banner-text, .banner-image {
+        max-width: 100%;
+    }
+
+
+
+        .banner-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+            mix-blend-mode: multiply;
+            margin-right: 10px;
+        }
+
+
+    .btn-pink
+    {
+        background-color: #ff69b4;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .btn-pink:hover
+        {
+            background-color: #ff85c1;
+        }
+
+    .btn-black {
+        color: #222;
+        text-decoration: none;
+        background: none;
+        border: none;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+        .btn-black:hover {
+            color: #e95c8b;
+            text-decoration: underline;
+        }
+
+    .card-body.text-center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+    }
+
+    .card-title, .card-text {
+        color: #222;
+    }
+
+
+
+</style>
+
+<section class="banner">
+    <div class="banner-text">
+        <h1>DISCOVER YOUR INNER BEAUTY <br> WITH BLOSSOM GLOW KIT</h1>
+        <p>Great gift for yourself and loved ones</p>
+        <button>Shop Now</button>
+    </div>
+    <div class="banner-image">
+        <img src="~/Images/Skin_care_product_natural_cosmetic_featuring_skin__care__and_facial-removebg-preview.png" alt="banner-image" />
+    </div>
+</section>
+
+<!-- 🌸 New Arrivals Section -->
+<h2 class="section-title">New Arrivals</h2>
+<div class="products-grid">
+    @foreach (var product in newArrivals)
+    {
+        <div class="product-card">
+            <img src="@product.ImageUrl" alt="@product.Name" />
+            <div class="product-name">@product.Name</div>
+            <div class="product-price">@product.Price EGP</div>
+            <a href="/Product/Details/@product.Id">
+                <button class="btn-pink">View Details</button>
+            </a>
+        </div>
+    }
+</div>
+
+<!-- 🌟 Best Sellers Section -->
+<h2 class="section-title">Best Sellers</h2>
+<div class="products-grid">
+    @foreach (var product in bestSellers)
+    {
+        <div class="product-card">
+            <img src="@product.ImageUrl" alt="@product.Name" />
+            <div class="product-name">@product.Name</div>
+            <div class="product-price">@product.Price EGP</div>
+            <a href="/Product/Details/@product.Id">
+                <button class="btn-pink">View Details</button>
+            </a>
+        </div>
+    }
+</div>
+<!---->
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card border-0" style="background-color: #f9c5d1;">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <img src="~/images/whatsapp image 2025-03-22 at 2.06.38 pm.jpeg" class="card-img" alt="Blossom Glow Kit">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Blossom Glow Kit</h5>
+                            <p class="card-text">Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams with lotus extract provide deep hydration and rejuvenation.</p>
+                            <button class="btn btn-pink">Shop Now</button>
+                            <button class="btn btn-black btn-link">Explore More →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card border-0" style="background-color: #f9c5d1;">
+                <div class="row no-gutters">
+                    <div class="col-md-6 order-md-2">
+                        <img src="~/images/whatsapp image 2025-03-22 at 2.07.45 pm.jpeg" class="card-img" alt="Floral Essence Masks Sets">
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Floral Essence Masks Sets</h5>
+                            <p class="card-text">Indulge in the beauty of nature with our Floral Essence Masks set. Each mask features a unique blend of flower extracts to hydrate and nourish your skin.</p>
+                            <button class="btn btn-pink">Shop Now</button>
+                            <button class="btn btn-black btn-link">Explore More →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--On the Blog-->
+<div class="container mt-5">
+    <h2 class="section-title">On the Blog</h2>
+    <div class="row g-4">
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card p-3 h-100">
+                <img src="~/images/vya-naturals-m3l24oeny2c-unsplash.jpg" class="card-img-top" alt="Cracking the Coconut Code">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Cracking the Coconut Code</h5>
+                    <p class="card-text">Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams</p>
+                    <button class="btn btn-transparent" onclick="changeColor(this)">
+                        <i class="bi bi-bag"></i> Read More
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card p-3 h-100">
+                <img src="~/images/screenshot 2025-05-05 190700.png" class="card-img-top" alt="Bloom Beauty Best of 2023">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-danger">Bloom Beauty Best of 2023</h5>
+                    <p class="card-text">
+                        Bloom Beauty Best of 2023 products winners are here. but little steps are made (nightly!)
+                        Nourishing body and face creams
+                    </p>
+                    <button type="button" class="btn btn-dark">Read More</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card p-3 h-100">
+                <img src="~/Images/lume-wellness-_HXI367NQrs-unsplash.jpg" class="card-img-top" alt="7 Skincare Habits to Break Now">
+                <div class="card-body text-center">
+                    <h5 class="card-title">7 Skincare Habits to Break Now</h5>
+                    <p class="card-text">Great skincare is a long game—it doesn’t happen overnight, but little steps  </p>
+                    <button class="btn btn-transparent" onclick="changeColor(this)">
+                        <i class="bi bi-bag"></i> Read More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
