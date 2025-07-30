@@ -1,0 +1,38 @@
+﻿@model WebApplication1.ViewModels.LoginViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Login";
+}
+
+<div class="modal-dialog-centered d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card shadow p-4" style="width: 400px;">
+        <h3 class="text-center mb-3">Log In</h3>
+        <p class="text-center text-muted">Please enter your e-mail and password:</p>
+
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <input asp-for="Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 position-relative">
+                <input asp-for="Password" class="form-control" placeholder="Password" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-pink w-100">Log In</button>
+
+            <div class="text-center my-3">OR</div>
+
+            <button type="button" class="btn btn-outline-dark w-100 mb-2">
+                <img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Continue with Google
+            </button>
+
+            <div class="text-center mt-2">
+                <a href="#" class="text-muted">Recover password?</a><br />
+                <span>New to Bloom Beauty? <a href="/Account/Register">Create an Account</a></span>
+            </div>
+        </form>
+    </div>
+</div>

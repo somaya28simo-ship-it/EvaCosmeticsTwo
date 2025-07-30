@@ -1,68 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Eva Chat Bot";
     Layout = "_Layout";
-     
+    ViewData["Title"] = "Eva Chat Assistant";
 }
 
+<div class="container py-5">
+    <h2 class="section-title text-center">Talk to Eva Assistant 🤖</h2>
 
-<link rel="stylesheet" href="~/css/chat-style.css" />
-
-<div class="chat-container">
-    <div class="chat-sidebar">
-        <h4>Eva Chat Bot</h4>
-        <a href="#" class="chat-btn">Start new chat</a>
-        <a href="#" class="chat-btn">All Chat</a>
-        <a href="#" class="chat-btn">Image Generator</a>
-        <a href="#" class="chat-btn">All Topics</a>
-        <a href="#" class="chat-btn">Text to Speech</a>
-
-        <h5 class="mt-4">History</h5>
-        <a href="#" class="text-light">Why my color was changing?</a><br />
-        <a href="#" class="text-light">Healthy dinner recipes</a><br />
-        <a href="#" class="text-light">Tell me a joke</a><br />
-        <a href="#" class="text-light">Suggest something</a>
-
-        <div class="mt-auto">
-            <h5>Settings</h5>
-         
-        </div>
-    </div>
-
-    <div class="chat-main-area">
-        <div class="chat-box" id="chatBox">
-            <p class="chat-welcome">What can I help with?</p>
-        </div>
-
-        <div class="chat-input-group">
-            <input type="text" id="chatInput" placeholder="Message..." />
-            <button type="button" onclick="sendMessage()">Send</button>
-        </div>
+    <div class="card p-4 shadow-sm mx-auto" style="max-width: 600px;">
+        <p class="text-muted">How can I help you today?</p>
+        <input type="text" class="form-control mb-3" placeholder="Type your question here...">
+        <button class="btn btn-pink w-100">Send</button>
     </div>
 </div>
-
-<script>
-    function sendMessage() {
-        var input = document.getElementById("chatInput");
-        var message = input.value.trim();
-        if (message === "") return;
-
-        var chatBox = document.getElementById("chatBox");
-
-    
-        var welcome = document.querySelector(".chat-welcome");
-        if (welcome) welcome.style.display = "none";
-
-
-        var userMessage = document.createElement("div");
-        userMessage.className = "message user-message";
-        userMessage.textContent = message;
-        chatBox.appendChild(userMessage);
-
-    
-        chatBox.scrollTop = chatBox.scrollHeight;
-
-      
-        input.value = "";
-    }
-</script>
-

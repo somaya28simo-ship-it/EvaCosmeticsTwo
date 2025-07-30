@@ -1,102 +1,40 @@
 ﻿@model WebApplication1.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "_Layout";
+}
 
-<div class="container my-5">
+<div class="container py-5">
     <div class="row">
-        <!-- صورة المنتج -->
         <div class="col-md-6 text-center">
-            <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="img-fluid rounded shadow-sm" style="max-height: 500px;" />
+            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded shadow" style="max-height: 400px;">
         </div>
-
-        <!-- تفاصيل المنتج -->
         <div class="col-md-6">
-            <h2 class="fw-bold mb-3">@Model.Name</h2>
+            <h2 class="mb-3">@Model.Name</h2>
             <p class="text-muted">@Model.Description</p>
-            <h4 class="text-danger fw-semibold mb-4">$@Model.Price</h4>
+            <h4 class="text-danger">$@Model.Price</h4>
+            <form asp-controller="Cart" asp-action="Add" method="post">
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <input type="hidden" name="productName" value="@Model.Name" />
+                <input type="hidden" name="price" value="@Model.Price" />
+                <input type="hidden" name="imageUrl" value="@Model.ImageUrl" />
 
-            <button class="btn btn-dark btn-lg px-5">Add to Bag</button>
-
-            <div class="mt-4">
-                <p><strong>Stock:</strong> @Model.Stock</p>
-                <p><strong>Shipping:</strong> Free worldwide shipping</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container mb-5">
-    <hr />
-    <h4 class="mb-4">Customer Reviews</h4>
-
-    <div class="card p-4 bg-light border-0 shadow-sm">
-        <!-- Review 1 -->
-        <div class="d-flex align-items-start mb-3">
-            <img src="~/Images/User1.jfif" class="rounded-circle me-3" alt="User" style="width: 50px; height: 50px; object-fit: cover;" />
-            <div>
-                <h6 class="mb-1">Sara M.</h6>
-                <p class="mb-0 text-muted">“Great quality product! Arrived fast and smells amazing. Would buy again.”</p>
-            </div>
-        </div>
-
-        <hr class="my-3" />
-
-        <!-- Review 2 -->
-        <div class="d-flex align-items-start">
-            <img src="~/Images/User2.jfif" class="rounded-circle me-3" alt="User" style="width: 50px; height: 50px; object-fit: cover;" />
-            <div>
-                <h6 class="mb-1">Yasmin A.</h6>
-                <p class="mb-0 text-muted">“Nice packaging and feels premium. Looking forward to seeing the results.”</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<hr />
-<h4 class="mt-4">Related Products</h4>
-<div class="row">
-    <!-- Related Product 1 -->
-    <div class="col-md-3">
-        <div class="card mb-4 shadow-sm">
-            <img src="~/Images/doYoP3DmbF8aGQ92YKxnEKbaiwzD2RxxssPLGk9A.webp" class="card-img-top" alt="Product 1">
-            <div class="card-body">
-                <h5 class="card-title">Product Name 1</h5>
-                <p class="card-text">200 EGP</p>
-                <a href="#" class="btn btn-outline-dark btn-sm">View Details</a>
-            </div>
+                <button type="submit" class="btn btn-pink mt-3">Add to Bag 🛍️</button>
+            </form>
         </div>
     </div>
 
-    <!-- Related Product 2 -->
-    <div class="col-md-3">
-        <div class="card mb-4 shadow-sm">
-            <img src="/images/fNDG9QaFN5UamOPukTqbU8DOpXM9FXdP2iRrCjyC.webp" class="card-img-top" alt="Product 2">
-            <div class="card-body">
-                <h5 class="card-title">Product Name 2</h5>
-                <p class="card-text">180 EGP</p>
-                <a href="#" class="btn btn-outline-dark btn-sm">View Details</a>
-            </div>
-        </div>
-    </div>
+    <hr class="my-5" />
 
-    <!-- Related Product 3 -->
-    <div class="col-md-3">
-        <div class="card mb-4 shadow-sm">
-            <img src="/images/EsAoH9i1as1kPFDZPaS3Hz77BMrp4H4CPCIKSLUw.webp" class="card-img-top" alt="Product 3">
-            <div class="card-body">
-                <h5 class="card-title">Product Name 3</h5>
-                <p class="card-text">220 EGP</p>
-                <a href="#" class="btn btn-outline-dark btn-sm">View Details</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Related Product 4 -->
-    <div class="col-md-3">
-        <div class="card mb-4 shadow-sm">
-            <img src="/images/HI8Vt2rjK4004PElpSJdvx4yTDmDdJHMx7e10LqB.webp" class="card-img-top" alt="Product 4">
-            <div class="card-body">
-                <h5 class="card-title">Product Name 4</h5>
-                <p class="card-text">150 EGP</p>
-                <a href="#" class="btn btn-outline-dark btn-sm">View Details</a>
+    <div>
+        <h4 class="mb-4">Customer Reviews</h4>
+        <div class="card p-4 bg-light border-0 shadow-sm mb-3">
+            <div class="d-flex align-items-start mb-3">
+                <img src="https://via.placeholder.com/60" class="rounded-circle me-3" alt="User" />
+                <div>
+                    <h6 class="mb-1">Sara Ahmed</h6>
+                    <p class="mb-0">The product is amazing, smells so good and makes my hair soft!</p>
+                </div>
             </div>
         </div>
     </div>

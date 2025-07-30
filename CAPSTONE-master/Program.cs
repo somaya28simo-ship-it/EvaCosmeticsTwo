@@ -13,6 +13,7 @@ namespace WebApplication1
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession();
             builder.Services.AddDbContext<AppDbconnction>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("J")));
             var app = builder.Build();
 
@@ -28,7 +29,7 @@ namespace WebApplication1
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.MapControllerRoute(
@@ -51,7 +52,7 @@ namespace WebApplication1
                         Description = "Reveal your skin's natural glow with this nourishing kit.",
                         Price = 320,
                         Stock = 50,
-                        ImageUrl = "/images/cuxziz1odnbfnvxwskehfyojmujq9pv1kfgzlkvh.webp"
+                        ImageUrl = "/images/1vGUmrX0IE2HZrVKmWmJhpZJDpxevTkzYnPIwGv9.webp"
                     },
                     new Product
                     {
@@ -75,7 +76,7 @@ namespace WebApplication1
                         Description = "Boost your glow with this jelly-textured moisturizer.",
                         Price = 310,
                         Stock = 40,
-                        ImageUrl = "/images/zmmg2ec33j925tzulqb5tnk9c0g2rka5iipsisxd.webp"
+                        ImageUrl = "/images/f5rxSDBgEsZNs9sG30dJSyMfNv17fNnoZWMBK3Gv.webp"
                     },
                     new Product
                     {
@@ -83,7 +84,7 @@ namespace WebApplication1
                         Description = "Hydrating toner infused with lotus flower extracts.",
                         Price = 180,
                         Stock = 45,
-                        ImageUrl = "/images/i0Shk8DgDT3YQ2VJUMvagURvTdSL90AvU3uJKdZL.webp"
+                        ImageUrl = "/images/EsAoH9i1as1kPFDZPaS3Hz77BMrp4H4CPCIKSLUw-removebg-preview.png"
                     }
                 );
                 context.SaveChanges();
