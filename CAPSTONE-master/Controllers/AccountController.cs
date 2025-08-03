@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using WebApplication1.data;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
@@ -21,27 +23,36 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = _context.Accounts
-                    .FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
+                var user = _context.Accounts.FirstOrDefault(a => a.Email == model.Email && a.Password == model.Password);
 
                 if (user != null)
                 {
+                    HttpContext.Session.SetInt32("AccountId", user.Id);
                     HttpContext.Session.SetString("UserEmail", user.Email);
-                    HttpContext.Session.SetString("UserRole", user.Role);
-                    HttpContext.Session.SetString("Username", user.Username);
+
+                    var identity = new ClaimsIdentity(new[] {
+                new Claim(ClaimTypes.Name, user.Email)
+            }, "Login");
+
+                    var principal = new ClaimsPrincipal(identity);
+
+                    await HttpContext.SignInAsync(principal); // ✅ هنا التعديل الصح
 
                     return RedirectToAction("Index", "Home");
                 }
 
-                ModelState.AddModelError("", "Invalid email or password.");
+                ModelState.AddModelError("", "Invalid email or password");
             }
 
             return View(model);
         }
+
+
+
 
         public IActionResult Logout()
         {
@@ -54,42 +65,44 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Register(RegisterViewModel model)
+       
+        public IActionResult MyOrders()
         {
-            if (ModelState.IsValid)
+            int? accountId = HttpContext.Session.GetInt32("AccountId");
+
+            if (accountId == null)
             {
-                // هنا بنحفظ بيانات المستخدم في قاعدة البيانات
-                var account = new Account
-                {
-                    Username = model.Username,
-                    Email = model.Email,
-                    Password = model.Password,
-                    Role = "User"
-                };
-
-                _context.Accounts.Add(account);
-                _context.SaveChanges();
-
                 return RedirectToAction("Login");
             }
 
-            return View(model);
-        }
-        public IActionResult MyOrders()
-        {
-            var user = _context.Accounts.FirstOrDefault(); // مؤقتًا أول مستخدم
-
-            if (user == null)
+            var account = _context.Accounts.FirstOrDefault(a => a.Id == accountId);
+            if (account == null)
+            {
                 return RedirectToAction("Login");
+            }
 
             var orders = _context.Orders
-                .Where(o => o.AccountId == user.Id)
-                .OrderByDescending(o => o.OrderDate)
+                .Where(o => o.AccountId == accountId)
+                .Select(o => new MyOrdersViewModel
+                {
+                    OrderId = o.Id,
+                    OrderDate = o.OrderDate,
+                    Status = o.Status,
+                    TotalItems = o.OrderDetails.Sum(d => d.Quantity),
+                    TotalPrice = o.OrderDetails.Sum(d => d.TotalPrice)
+                })
                 .ToList();
 
-            return View(orders);
+            var viewModel = new UserOrdersViewModel
+            {
+                Username = account.Username,
+                Email = account.Email,
+                Orders = orders
+            };
+
+            return View(viewModel);
         }
+
 
     }
 }

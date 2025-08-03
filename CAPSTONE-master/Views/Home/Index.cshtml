@@ -149,7 +149,7 @@
         <button>Shop Now</button>
     </div>
     <div class="banner-image">
-        <img src="~/Images/WhatsApp_Image_2025-07-20_at_12.32.14_PM__1_-removebg-preview.png" alt="Banner Image" />
+        <img src="~/Images/Rectangle 3.png" alt="Banner Image" />
     </div>
 </section>
 
@@ -266,7 +266,7 @@
 <!--Skin Quiz Section-->
 <section class="skin-quiz-section">
     <div class="quiz-container">
-        <img src="~/Images/download (5).jfif" class="quiz-img" alt="Quiz">
+        <img src="~/Images/download (6).jfif" class="quiz-img" alt="Quiz">
         <div class="quiz-text">
             <h3 class="fw-bold">The Skin Quiz</h3>
             <p>Meet the quiz that will curate a routine just as unique as you are.</p>
@@ -275,20 +275,13 @@
     </div>
 </section>
 
-<!-- Instagram Gallery Section -->
-<section class="py-5 bg-soft-pink text-center">
-    <div class="container">
-        <h5 class="mb-4">... SHARE HOW YOU GLOWGIRLS WITH #EVAcosmetics ...</h5>
-        <div class="row g-3">
-            @for (int i = 0; i < 8; i++)
-            {
-                <div class="col-6 col-md-3">
-                    <img src="https://via.placeholder.com/200" class="img-fluid rounded" alt="Insta Pic">
-                </div>
-            }
-        </div>
-        <div class="mt-4">
-            <a href="#" class="btn btn-pink">Follow Us on Instagram</a>
-        </div>
+@* <!-- Instagram Gallery Section -->
+@{
+    var instaImages = ViewData["InstagramImages"] as List<string>;
+}
+@foreach (var image in instaImages)
+{
+    <div class="col-6 col-md-3">
+        <img src="~/Images/@image" class="img-fluid rounded" alt="Instagram Pic">
     </div>
-</section>
+} *@

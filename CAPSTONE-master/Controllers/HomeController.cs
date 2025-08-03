@@ -30,9 +30,22 @@ namespace WebApplication1.Controllers
             var bestSellers = _context.Products
                 .Take(4)
                .ToList();
+            // Instagram images (add your actual file names here)
+    //        List<string> instaImages = new List<string>
+    //{
+    //    "insta1.jpg",
+    //    "insta2.jpg",
+    //    "insta3.jpg",
+    //    "insta4.jpg",
+    //    "insta5.jpg",
+    //    "insta6.jpg",
+    //    "insta7.jpg",
+    //    "insta8.jpg"
+    //};
 
             ViewData["NewArrivals"] = newArrivals;
             ViewData["BestSellers"] = bestSellers;
+            //ViewData["InstagramImages"] = instaImages;
 
             return View();
         }
@@ -52,7 +65,10 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-       
+        public IActionResult BestSeller()
+        {
+            return View();
+        }
 
     }
 }

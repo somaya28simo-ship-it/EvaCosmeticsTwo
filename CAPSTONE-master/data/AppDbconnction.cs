@@ -16,5 +16,7 @@ namespace WebApplication1.data
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<CardItem> CardItems { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
