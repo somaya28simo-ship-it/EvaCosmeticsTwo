@@ -67,7 +67,8 @@ namespace WebApplication1.Controllers
 
         public IActionResult BestSeller()
         {
-            return View();
+            var bestSellers = _context.Products.Take(6).ToList();
+            return View(bestSellers);
         }
 
     }

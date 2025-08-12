@@ -1,131 +1,82 @@
-﻿@{
+﻿@model List<WebApplication1.Models.Product>
+@{
     ViewData["Title"] = "Best Sellers";
 }
 
 <style>
-    body {
-        background-color: #f8d7e5;
-    }
-
-    .card {
-        margin-bottom: 30px;
+    .product-card {
         border: none;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
         background-color: #fff;
     }
 
-        .card img {
-            border-radius: 8px;
-            max-height: 200px;
-            object-fit: contain;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #fdfdfd;
+        .product-card:hover {
+            transform: translateY(-5px);
         }
 
-    .card-title {
-        font-weight: bold;
-        font-size: 1.1rem;
-        margin-bottom: 10px;
+    /* === بداية الكود الجديد لتحسين شكل الصورة === */
+    .product-img-container {
+        padding: 15px; /* ✅ إضافة مساحة داخلية حول الصورة */
+        background-color: #fff;
+        border-radius: 10px 10px 0 0;
     }
 
-    .card-text {
-        color: #6c757d;
-        font-size: 0.95rem;
-        margin-bottom: 15px;
+    .product-img {
+        border-radius: 10px !important; /* ✅ جعل حواف الصورة دائرية */
+        height: 220px; /* تقليل الارتفاع قليلاً */
+        object-fit: cover;
+        width: 100%;
     }
+    /* === نهاية الكود الجديد === */
 
     .btn-pink {
-        background-color: #ff69b4;
-        color: white;
-        padding: 10px 40px; /* كبرنا الزر */
-        border-radius: 25px;
-        font-size: 1rem;
-        font-weight: 500;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+        background-color: #e68fac;
+        color: white !important;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease;
     }
 
         .btn-pink:hover {
-            background-color: #ff1493;
-            transform: scale(1.05);
+            background-color: #e0799b;
+            color: white !important;
         }
-
-    .row {
-        margin-bottom: 30px;
-    }
 </style>
 
+<div class="container py-5">
+    <h1 class="text-center mb-4">Our Best Sellers</h1>
+    <p class="text-center text-muted mb-5">Discover the products our customers love the most.</p>
 
-<div class="container mt-5">
-    <h3 class="mb-4 text-center">Best Sellers</h3>
     <div class="row">
-        <!-- Card 1 -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/1vGUmrX0IE2HZrVKmWmJhpZJDpxevTkzYnPIwGv9.webp" class="card-img-top" alt="Product 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Product 1</h5>
-                    <p class="card-text">Short description for product 1.</p>
-                    <a href="#" class="btn btn-pink">Buy</a>
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100">
+
+                    <!-- ✅ تم تعديل هذا الجزء بالكامل -->
+                    <div class="product-img-container">
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
+                            <img src="@Url.Content(product.ImageUrl)" class="product-img" alt="@product.Name">
+                        </a>
+                    </div>
+
+                    <div class="card-body d-flex flex-column text-center pt-0">
+                        <!-- pt-0 لإزالة المساحة العلوية الزائدة -->
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text text-muted flex-grow-1">@product.Description</p>
+                        <p class="fw-bold fs-5 mt-2">@product.Price.ToString("C")</p>
+                        <div class="mt-auto">
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-pink">View Details</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/2VWZJrgO23bUarV1hn7aQs7lzWfuhslPtCrkcCwB.webp" class="card-img-top" alt="Product 2">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Product 2</h5>
-                    <p class="card-text">Short description for product 2.</p>
-                    <a href="#" class="btn btn-pink">Buy</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/f5rxSDBgEsZNs9sG30dJSyMfNv17fNnoZWMBK3Gv.webp" class="card-img-top" alt="Product 3">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Product 3</h5>
-                    <p class="card-text">Short description for product 3.</p>
-                    <a href="#" class="btn btn-pink">Buy</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card 4 -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/OIP.webp" class="card-img-top" alt="Product 4">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Product 4</h5>
-                    <p class="card-text">Short description for product 4.</p>
-                    <a href="#" class="btn btn-pink">Buy</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card 5 -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/doYoP3DmbF8aGQ92YKxnEKbaiwzD2RxxssPLGk9A.webp" class="card-img-top" alt="Product 5">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Product 5</h5>
-                    <p class="card-text">Short description for product 5.</p>
-                    <a href="#" class="btn btn-pink">Buy</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card 6 -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/HI8Vt2rjK4004PElpSJdvx4yTDmDdJHMx7e10LqB.webp" class="card-img-top" alt="Product 6">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Product 6</h5>
-                    <p class="card-text">Short description for product 6.</p>
-                    <a href="#" class="btn btn-pink">Buy</a>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>

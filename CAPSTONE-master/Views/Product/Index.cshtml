@@ -4,7 +4,6 @@
 }
 
 <style>
-    /* يمكنك نسخ نفس أنماط بطاقات المنتجات من صفحتك الرئيسية هنا */
     .product-card {
         border: none;
         border-radius: 10px;
@@ -23,14 +22,22 @@
         object-fit: cover;
     }
 
+    /* ✅✅✅ تم تحسين هذا الكلاس ليتطابق مع الصورة ✅✅✅ */
     .btn-pink {
-        background-color: #f08da6;
-        color: white;
+        background-color: #e68fac; /* لون وردي هادئ مثل الصورة */
+        color: white !important; /* إضافة !important لضمان تطبيق اللون الأبيض */
         border: none;
+        border-radius: 8px; /* حواف دائرية واضحة */
+        padding: 10px 20px; /* زيادة الحجم الداخلي للزر */
+        font-weight: bold; /* خط عريض */
+        text-decoration: none; /* إزالة أي خط تحت النص */
+        display: inline-block; /* لضمان تطبيق الحجم بشكل صحيح */
+        transition: background-color 0.3s ease;
     }
 
         .btn-pink:hover {
-            background-color: #e57291;
+            background-color: #e0799b; /* لون أغمق قليلاً عند مرور الماوس */
+            color: white !important;
         }
 </style>
 
@@ -44,13 +51,13 @@
             <div class="col-md-4 col-lg-3 mb-4">
                 <div class="card product-card h-100">
                     <img src="@Url.Content(product.ImageUrl)" class="product-img" alt="@product.Name">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">@product.Name</h5>
                         <p class="card-text text-muted flex-grow-1">@product.Description</p>
                         <p class="fw-bold fs-5 mt-2">@product.Price.ToString("C")</p>
                         <div class="mt-auto">
-                            <a href="@Url.Action("Details", "Product", new { id = product.Id })" class="btn btn-outline-secondary btn-sm">View Details</a>
-                            <a href="#" class="btn btn-pink btn-sm">Add to Cart</a>
+                            <!-- ✅✅✅ تم تعديل الكلاس هنا ✅✅✅ -->
+                            <a href="@Url.Action("Details", "Product", new { id = product.Id })" class="btn btn-pink">View Details</a>
                         </div>
                     </div>
                 </div>
