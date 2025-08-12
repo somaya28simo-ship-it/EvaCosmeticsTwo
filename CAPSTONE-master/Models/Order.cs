@@ -19,10 +19,7 @@ namespace WebApplication1.Models
         public Account Account { get; set; }
        
 
-        [ForeignKey("User")]
-        public int UserId { get; set; }     // ✅ دي اللي هنعتمد عليها
-        public User User { get; set; }
-
+   
 
         public List<OrderDetails> OrderDetails { get; set; }
     }

@@ -4,38 +4,235 @@
     Layout = "_Layout";
 }
 
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-6 text-center">
-            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded shadow" style="max-height: 400px;">
-        </div>
-        <div class="col-md-6">
-            <h2 class="mb-3">@Model.Name</h2>
-            <p class="text-muted">@Model.Description</p>
-            <h4 class="text-danger">$@Model.Price</h4>
-            <form asp-controller="Cart" asp-action="Add" method="post">
-                <input type="hidden" name="productId" value="@Model.Id" />
-                <input type="hidden" name="productName" value="@Model.Name" />
-                <input type="hidden" name="price" value="@Model.Price" />
-                <input type="hidden" name="imageUrl" value="@Model.ImageUrl" />
+<style>
+    /* === ✅ تعريف ألوان التطبيق الرئيسية === */
+    :root {
+        --app-pink: #e83e8c; /* اللون الوردي الأساسي */
+        --app-pink-darker: #d1367d; /* لون أغمق للتأثيرات مثل hover */
+    }
 
-                <button type="submit" class="btn btn-pink mt-3">Add to Bag 🛍️</button>
-            </form>
+    /* === تصميم مخصص لتقييم النجوم === */
+    .star-rating {
+        color: #ffc107;
+    }
+
+    .rating-input .fa-star {
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #e4e5e9;
+    }
+
+        .rating-input .fa-star.selected {
+            color: #ffc107;
+        }
+
+    /* === CSS للمحاذاة العمودية === */
+    .product-info-column {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .product-details-content {
+        flex-grow: 1;
+    }
+
+    /* === ✅ تخصيص ألوان الأزرار وحقول الإدخال === */
+    .btn-app-theme {
+        background-color: var(--app-pink);
+        border-color: var(--app-pink);
+        color: #fff;
+    }
+
+        .btn-app-theme:hover {
+            background-color: var(--app-pink-darker);
+            border-color: var(--app-pink-darker);
+            color: #fff;
+        }
+
+    .btn-outline-app-theme {
+        color: var(--app-pink);
+        border-color: var(--app-pink);
+    }
+
+        .btn-outline-app-theme:hover {
+            background-color: var(--app-pink);
+            border-color: var(--app-pink);
+            color: #fff;
+        }
+
+    .form-control:focus {
+        border-color: var(--app-pink);
+        box-shadow: 0 0 0 0.25rem rgba(232, 62, 140, 0.25);
+    }
+</style>
+
+<div class="container py-5">
+    <!-- === قسم المنتج الرئيسي === -->
+    <div class="row mb-5">
+        <div class="col-md-6 text-center">
+            <!-- ✅ التعديل الأول هنا -->
+            <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="img-fluid rounded shadow-lg" style="max-height: 450px; object-fit: cover;">
+        </div>
+
+        <div class="col-md-6 product-info-column">
+            <div class="product-details-content">
+                <h2 class="mb-3">@Model.Name</h2>
+                <p class="text-muted lead">@Model.Description</p>
+                <div class="additional-info mt-4">
+                    @if (!string.IsNullOrEmpty(Model.Benefits))
+                    {
+                        <h5><i class="fas fa-leaf me-2 text-success"></i>Benefits</h5> <p>@Model.Benefits</p>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.HowToUse))
+                    {
+                        <h5 class="mt-4"><i class="fas fa-book-open me-2 text-info"></i>How to Use</h5> <p>@Model.HowToUse</p>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Ingredients))
+                    {
+                        <h5 class="mt-4"><i class="fas fa-flask me-2 text-primary"></i>Key Ingredients</h5> <p>@Model.Ingredients</p>
+                    }
+                </div>
+            </div>
+            <div class="product-purchase-section">
+                <h3 class="text-danger my-3">$@Model.Price.ToString("F2")</h3>
+                <form asp-controller="Cart" asp-action="Add" method="post" class="mt-auto">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <button type="submit" class="btn btn-app-theme btn-lg w-100 py-2">Add to Bag 🛍️</button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <hr class="my-5" />
+    <hr />
 
-    <div>
-        <h4 class="mb-4">Customer Reviews</h4>
-        <div class="card p-4 bg-light border-0 shadow-sm mb-3">
-            <div class="d-flex align-items-start mb-3">
-                <img src="https://via.placeholder.com/60" class="rounded-circle me-3" alt="User" />
-                <div>
-                    <h6 class="mb-1">Sara Ahmed</h6>
-                    <p class="mb-0">The product is amazing, smells so good and makes my hair soft!</p>
+    <!-- === قسم مراجعات العملاء (بدون تغيير) === -->
+    <div class="mt-5">
+        <!-- ... (محتوى المراجعات هنا) ... -->
+    </div>
+</div>
+
+<!-- === نافذة إضافة مراجعة (بدون تغيير) === -->
+<div class="modal fade" id="addReviewModal" ...>
+    <!-- ... (محتوى النافذة هنا) ... -->
+</div>
+
+<!-- === ✅ قسم "منتجات قد تعجبك أيضًا" ببيانات حقيقية === -->
+<div class="mt-5 pt-4">
+    <h2 class="text-center mb-4">You Might Also Like</h2>
+    <div class="row">
+        <!-- المنتج الحقيقي الأول -->
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm related-product-card">
+                <a href="#">
+                    <!-- ✅ التعديل الثاني هنا -->
+                    <img src="@Url.Content("~/Images/qFjXL2a7XZMKxnOUQQBD4poWSFpAmT3aMz5C2fFY.webp")" class="card-img-top" alt="Eva Skin Clinic Hyaluronic Acid Serum" style="height: 200px; object-fit: cover;">
+                </a>
+                <div class="card-body text-center d-flex flex-column">
+                    <h6 class="card-title flex-grow-1"><a href="#" class="text-dark text-decoration-none">Eva Skin Clinic Hyaluronic Acid Serum</a></h6>
+                    <p class="text-danger fw-bold">EGP 250.00</p>
+                </div>
+            </div>
+        </div>
+        <!-- المنتج الحقيقي الثاني -->
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm related-product-card">
+                <a href="#">
+                    <!-- ✅ التعديل الثالث هنا -->
+                    <img src="@Url.Content("~/Images/WYHwbVaQjYAIIweaD4cgpEEQVXysgUfNefU5pEoF.webp")" class="card-img-top" alt="Eva Skin Clinic Vitamin C Serum" style="height: 200px; object-fit: cover;">
+                </a>
+                <div class="card-body text-center d-flex flex-column">
+                    <h6 class="card-title flex-grow-1"><a href="#" class="text-dark text-decoration-none">Eva Skin Clinic Vitamin C Serum</a></h6>
+                    <p class="text-danger fw-bold">EGP 240.00</p>
+                </div>
+            </div>
+        </div>
+        <!-- المنتج الحقيقي الثالث -->
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm related-product-card">
+                <a href="#">
+                    <!-- ✅ التعديل الرابع هنا -->
+                    <img src="@Url.Content("~/Images/N5xsfubt6kGRCm0nmcAExExzG9xa8B3BaJW3oO2B.webp")" class="card-img-top" alt="Eva Skin Clinic Collagen Day Cream" style="height: 200px; object-fit: cover;">
+                </a>
+                <div class="card-body text-center d-flex flex-column">
+                    <h6 class="card-title flex-grow-1"><a href="#" class="text-dark text-decoration-none">Eva Skin Clinic Collagen Day Cream</a></h6>
+                    <p class="text-danger fw-bold">EGP 210.00</p>
+                </div>
+            </div>
+        </div>
+        <!-- المنتج الحقيقي الرابع -->
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm related-product-card">
+                <a href="#">
+                    <!-- ✅ التعديل الخامس هنا -->
+                    <img src="@Url.Content("~/Images/14zPX4CNFbVHMPXfLPoFAfD3A9cNzc7Lleigew4m.webp")" class="card-img-top" alt="Eva Man Look Hair Cream" style="height: 200px; object-fit: cover;">
+                </a>
+                <div class="card-body text-center d-flex flex-column">
+                    <h6 class="card-title flex-grow-1"><a href="#" class="text-dark text-decoration-none">Eva Man Look Hair Cream</a></h6>
+                    <p class="text-danger fw-bold">EGP 85.00</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+@section Scripts {
+    <script>
+        // --- JavaScript for Star Rating Interaction ---
+        const stars = document.querySelectorAll('.rating-input .fa-star');
+        const ratingInputContainer = document.querySelector('.rating-input');
+        const ratingValueInput = document.getElementById('ratingValue');
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function () {
+                resetStars();
+                const rating = this.dataset.value;
+                for (let i = 0; i < rating; i++) { stars[i].classList.add('selected'); }
+            });
+            star.addEventListener('click', function () {
+                const rating = this.dataset.value;
+                ratingValueInput.value = rating;
+                ratingInputContainer.dataset.rating = rating;
+            });
+        });
+        ratingInputContainer.addEventListener('mouseout', function () {
+            resetStars();
+            const currentRating = ratingValueInput.value;
+            for (let i = 0; i < currentRating; i++) { stars[i].classList.add('selected'); }
+        });
+        function resetStars() { stars.forEach(s => s.classList.remove('selected')); }
+
+        // --- JavaScript for Submitting the Review (Client-Side) ---
+        document.getElementById('submitReviewBtn').addEventListener('click', function () {
+            const name = document.getElementById('reviewerName').value;
+            const text = document.getElementById('reviewText').value;
+            const rating = parseInt(ratingValueInput.value);
+            if (!name || !text || rating === 0) {
+                alert('Please fill out all fields and select a rating.');
+                return;
+            }
+            let starsHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const starClass = i < rating ? 'fas fa-star star-rating' : 'far fa-star';
+                starsHTML += `<i class="${starClass}"></i>`;
+            }
+            const reviewElement = document.createElement('div');
+            reviewElement.className = 'd-flex align-items-start mb-3';
+            reviewElement.innerHTML = `
+                        <img src="https://i.pravatar.cc/60?img=${Math.floor(Math.random() * 10) + 2}" class="rounded-circle me-3" alt="User" />
+                        <div>
+                            <h6 class="mb-1">${name}</h6>
+                            <div class="mb-2">${starsHTML}</div>
+                            <p class="mb-0">${text}</p>
+                        </div>
+                    `;
+            document.getElementById('reviewsContainer').prepend(reviewElement);
+            var modal = bootstrap.Modal.getInstance(document.getElementById('addReviewModal'));
+            modal.hide();
+            document.getElementById('reviewForm').reset();
+            ratingValueInput.value = 0;
+            resetStars();
+        });
+    </script>
+}

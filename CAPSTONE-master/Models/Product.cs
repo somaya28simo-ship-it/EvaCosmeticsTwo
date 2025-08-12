@@ -8,6 +8,11 @@ namespace WebApplication1.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public string? Benefits { get; set; }      // الفوائد
+        public string? HowToUse { get; set; }      // طريقة الاستخدام
+        public string? Ingredients { get; set; }   // المكونات
+       // public string? VideoReviewUrl { get; set; } // الفيديو
         [Precision(18, 2)]
         public decimal Price { get; set; }
         public int Stock { get; set; }

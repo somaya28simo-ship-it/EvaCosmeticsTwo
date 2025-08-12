@@ -13,8 +13,20 @@ namespace WebApplication1
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddSession();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(1);
+            });
+
             builder.Services.AddDbContext<AppDbconnction>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("J")));
+
+            builder.Services.AddAuthentication("Cookies")
+                .AddCookie("Cookies", options =>
+                {
+                    options.LoginPath = "/Account/Login";
+                    options.AccessDeniedPath = "/Account/AccessDenied";
+                });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -27,14 +39,15 @@ namespace WebApplication1
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             // Data seeding
             using (var scope = app.Services.CreateScope())
             {
@@ -84,14 +97,19 @@ namespace WebApplication1
                         Description = "Hydrating toner infused with lotus flower extracts.",
                         Price = 180,
                         Stock = 45,
-                        ImageUrl = "/images/EsAoH9i1as1kPFDZPaS3Hz77BMrp4H4CPCIKSLUw-removebg-preview.png"
+                        ImageUrl = "/images/EsAoH9i1as1kPFDZPaS3Hz77BMrp4H4CPCIKSLUw-removebg-preview.png",
+                        Benefits = "Deep hydration, Soothes irritated skin, Minimizes pores.",
+                        HowToUse = "After cleansing, apply a small amount to a cotton pad and gently wipe over the face. Pat gently for better absorption.",
+                        Ingredients = "Lotus Flower Extract, Niacinamide, Hyaluronic Acid."
+
+                        // تم تحويل هذا السطر إلى تعليق لتعطيله
+                        // , VideoReviewUrl = "/videos/review-video.mp4" 
                     }
                 );
                 context.SaveChanges();
             }
 
             app.Run();
-
         }
     }
 }

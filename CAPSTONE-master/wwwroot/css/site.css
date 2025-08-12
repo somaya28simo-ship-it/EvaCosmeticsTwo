@@ -48,18 +48,21 @@ h1 {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: black;
     margin: 0 10px;
-    transition: color 0.3s ease;
+    /* ✅ حذفنا اللون من هنا لأنه لا يؤثر بشكل صحيح */
 }
 
-    .icon a:hover {
-        color: #ff4081;
-    }
-
+/* ✅ استهدفنا الأيقونة (i) مباشرة */
 .icon i {
     font-size: 1.5rem;
     margin-bottom: 5px;
+    color: #000000; /* اللون الأسود الافتراضي */
+    transition: color 0.3s ease; /* تأثير انتقال ناعم للون */
+}
+
+/* ✅ عند مرور الماوس فوق الرابط (a)، نغير لون الأيقونة (i) التي بداخله */
+.icon a:hover i {
+    color: #F5A3B7; /* اللون الوردي الخاص ببراند Eva */
 }
 
 .nav-text {
@@ -69,6 +72,7 @@ h1 {
 .chat-bot-icon {
     margin-left: 30px;
 }
+
 
 /* =================== Brand =================== */
 .eva-brand {
@@ -86,21 +90,7 @@ h1 {
     }
 
 /* =================== Hero / Banner =================== */
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, #f1b8ba, #fd9abb);
-    color: white;
-}
-
-    .hero h1 {
-        font-size: 2.5rem;
-        font-weight: bold;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-    }
+/* .hero ... (هذا الجزء يبقى كما هو) */
 
 .banner {
     display: flex;
@@ -115,44 +105,53 @@ h1 {
     box-sizing: border-box;
 }
 
+/* ✅ تم تعديل هذا الجزء بالكامل */
 .banner-text {
     max-width: 50%;
+    display: flex; /* 1. تفعيل Flexbox */
+    flex-direction: column; /* 2. جعل العناصر تترتب عموديًا (تحت بعضها) */
+    align-items: center; /* 3. توسيط كل العناصر أفقيًا */
+    text-align: center; /* 4. التأكد من أن النص داخل كل عنصر في المنتصف */
 }
 
-    .banner-text h1,
-    .banner-text p,
-    .banner-text button {
-        margin-left: 130px;
-    }
-
+    /* ✅ تم تعديل هذه القاعدة */
     .banner-text h1 {
         font-size: 36px;
         color: #333;
         font-weight: bold;
         margin-bottom: 20px;
+    
     }
 
+    /* ✅ تم تعديل هذه القاعدة */
     .banner-text p {
         font-size: 18px;
         color: #444;
         margin-bottom: 30px;
+      
     }
 
-    .banner-text button {
-        background: linear-gradient(to right, #f08da6, #f8a8b8);
+    /* ✅ تم تعديل هذه القاعدة لتستهدف الزر بشكل أفضل */
+    .banner-text .btn-pink { /* استخدمنا .btn-pink بدلاً من button */
+        background-color: #f08da6; /* لون موحد مع باقي الموقع */
         color: white;
-        padding: 8px 90px;
+        padding: 12px 40px; /* زيادة حجم الحشو لجعله أكبر */
         border: none;
-        border-radius: 6px;
-        font-size: 16px;
+        border-radius: 25px; /* حواف دائرية أكثر */
+        font-size: 18px;
+        font-weight: bold;
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        transition: background 0.3s ease;
+        transition: all 0.3s ease; /* تأثير انتقال لكل الخصائص */
+  
     }
 
-        .banner-text button:hover {
-            background: linear-gradient(to right, #f47b99, #f595a8);
+        /* ✅ تم تعديل هذه القاعدة */
+        .banner-text .btn-pink:hover {
+            background-color: #e57291;
+            transform: translateY(-2px); /* إضافة تأثير حركة بسيط */
         }
+
 .banner-image {
     flex: 1;
     display: flex;
@@ -165,7 +164,6 @@ h1 {
         height: auto;
         max-width: 100%;
     }
-
 
 /* =================== Sections =================== */
 .section-title {

@@ -12,8 +12,8 @@ using WebApplication1.data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(AppDbconnction))]
-    [Migration("20250726113557_UpdateOrder")]
-    partial class UpdateOrder
+    [Migration("20250803191908_UserFromOrder")]
+    partial class UserFromOrder
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,9 +131,14 @@ namespace WebApplication1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -215,6 +220,27 @@ namespace WebApplication1.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("WebApplication1.Models.Order", b =>
                 {
                     b.HasOne("WebApplication1.Models.Account", "Account")
@@ -222,6 +248,10 @@ namespace WebApplication1.Migrations
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WebApplication1.Models.User", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Account");
                 });
@@ -248,6 +278,11 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.User", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
